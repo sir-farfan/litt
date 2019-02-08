@@ -24,3 +24,11 @@ We need to offer a RESTful CRUD for all the information above.
 
 1. If you add automated tests
 2. If you provide a Docker image
+
+## F.A.Q.
+
+### How do you evaluate the exercise?
+Our evaluation is based on many aspects, such as general approach adopted, quality of code, use of best practices, capabilities to keep the code simple and maintainable.
+
+### How can I deliver the exercise?
+To deliver the exercise, you should clone this repository and work on a new branch. When you'll consider it completed, just push the branch and open a Pull Request.
