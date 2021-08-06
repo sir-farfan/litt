@@ -1,0 +1,14 @@
+# stolen from: https://referbruv.com/blog/posts/setting-up-and-using-mysql-as-a-container-via-docker-compose
+
+version: '3'
+
+services: 
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            # figure how to reset this from the docker image xD
+            MYSQL_ROOT_PASSWORD: YOUR_PASSWORD_HERE
+        ports: 
+            - 3306:3306
