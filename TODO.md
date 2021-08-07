@@ -5,11 +5,13 @@ Config
 
 Service
 > CRUD for Tag  
+>> Clear tables between unit tests  
 > CRUD for Member  
 > CRUD for Member tags
 
 Usecase
 > Tag  
+>> Restrict to 40 chars as defined in the DB  
 > Member  
 > Member tags
 
@@ -22,6 +24,7 @@ Model
 Database
 > Docker compose  
 >> ~~MySQL~~  
+>> ~~Clear settings~~
 
 > Connect from Go  
 >> Perform insert  

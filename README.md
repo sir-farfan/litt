@@ -20,3 +20,12 @@ docker-compose up
 ```
 
 It will start a local MySQL database and create the tables as defined in ./db/database.sql
+
+#### Restarting the DB
+
+The DB running in Docker will keep all your records across restarts, if you want
+to delete everything for whatever reason, just run
+
+```bash
+docker compose rm
+```
