@@ -21,7 +21,9 @@ DELETE  {{ServiceHost}}/tag/-3 HTTP/1.1
 content-type: application/json;
 
 ### Search a tag by name 🔭
-GET  {{ServiceHost}}/tag?name=first HTTP/1.1
+# Whild cards are in the form of %pattern%
+# The URI code for % is %25
+GET  {{ServiceHost}}/tag?name=%25ea%25 HTTP/1.1
 content-type: application/json;
 
 ### Search a tag by ID 🔭
