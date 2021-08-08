@@ -71,7 +71,8 @@ jobs:
           push: true
           tags: |
             sulfurf/litt:${{ github.sha }}
+            sulfurf/litt:nightly
           labels: |
             sulfurf/litt:${{ github.sha }}
-      
+            sulfurf/litt:nightly
 
