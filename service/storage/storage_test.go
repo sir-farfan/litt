@@ -11,6 +11,7 @@ import (
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/model"
 )
 
+//nolint:gosec // no need for strong cypher in tests
 func init() {
 	rand.Seed(time.Now().UnixNano())
 	createTag = fmt.Sprintf("create%d", rand.Intn(100000))
