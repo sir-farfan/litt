@@ -18,8 +18,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Run linter for code quality
-        run: |
-          golangci-lint run -v --timeout 3m0s
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.34.1
 
   build:
     name: Build
