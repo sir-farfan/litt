@@ -53,7 +53,30 @@ func (t *Tag) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func (t *Tag) Search(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("searching tag\n"))
+	var tag model.Tag
+	tag.ID, _ = strconv.Atoi(r.FormValue("id"))
+	tag.Tag = r.FormValue("name")
+
+	tags, err := t.useCase.Search(&tag)
+
+	if err != nil {
+		status := http.StatusInternalServerError
+		switch err.Error() {
+		case usecase.SearchParamError:
+			status = http.StatusBadRequest
+		default:
+			log.Printf("Unknown error occurred: %v\n", err)
+		}
+		http.Error(w, err.Error(), status)
+	}
+
+	m, err := json.Marshal(tags)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(m)
 }
 
 func (t *Tag) Delete(w http.ResponseWriter, r *http.Request) {

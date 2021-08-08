@@ -165,7 +165,7 @@ func TestSearchTag(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			tags, _ := service.SearchTag(tc.tag2search)
+			tags, _ := service.SearchTag(0, tc.tag2search)
 			assert.Equal(t, tc.count, len(tags))
 			if tc.count > 0 {
 				assert.Equal(t, tags[0].Tag, tc.tag2search)

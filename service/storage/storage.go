@@ -95,11 +95,23 @@ func (dbc *DBService) DeleteTagByID(tag int) (int, error) {
 	return int(affected), nil
 }
 
-func (dbc *DBService) SearchTag(tag string) ([]model.Tag, error) {
+func (dbc *DBService) SearchTag(id int, tag string) ([]model.Tag, error) {
 	var tags []model.Tag
-	query := "SELECT * FROM " + TagTable + " WHERE tag = (?)"
+	params := make([]interface{}, 0)
 
-	rows, err := dbc.DB.Query(query, tag)
+	query := "SELECT * FROM " + TagTable
+
+	if id > 0 {
+		query += " WHERE id = (?)"
+		params = append(params, id)
+	}
+
+	if len(tag) > 0 {
+		query += " WHERE tag LIKE (?)"
+		params = append(params, tag)
+	}
+
+	rows, err := dbc.DB.Query(query, params...)
 	if err != nil {
 		log.Printf("ERROR deleting tag: %v\n", err)
 		return nil, err
@@ -116,8 +128,6 @@ func (dbc *DBService) SearchTag(tag string) ([]model.Tag, error) {
 
 		tags = append(tags, tag)
 	}
-
-	log.Printf("Rows found: %v\n", tag)
 
 	return tags, nil
 }

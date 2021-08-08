@@ -10,6 +10,7 @@ func Setup(tag controller.Tag) *mux.Router {
 	r.HandleFunc("/tag", tag.Create).Methods("POST")
 	r.HandleFunc("/tag/{tag_id:[0-9]+}", tag.Delete).Methods("DELETE")
 	r.HandleFunc("/tag", tag.Search).Methods("GET").Queries("name", "*", "id", "[0-9]+")
+	r.HandleFunc("/tag", tag.Search).Methods("GET")
 
 	return r
 }

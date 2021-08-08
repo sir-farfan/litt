@@ -19,3 +19,19 @@ content-type: application/json;
 ### Negative values ignored too 😛
 DELETE  {{ServiceHost}}/tag/-3 HTTP/1.1
 content-type: application/json;
+
+### Search a tag by name 🔭
+GET  {{ServiceHost}}/tag?name=first HTTP/1.1
+content-type: application/json;
+
+### Search a tag by ID 🔭
+GET  {{ServiceHost}}/tag?id=1 HTTP/1.1
+content-type: application/json;
+
+### Get all tags 📖
+GET  {{ServiceHost}}/tag HTTP/1.1
+content-type: application/json;
+
+### Search can't mix name and id ❌
+GET  {{ServiceHost}}/tag?name=created&id=3 HTTP/1.1
+content-type: application/json;
