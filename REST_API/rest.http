@@ -3,3 +3,7 @@
 ### Create new tag
 POST {{ServiceHost}}/tag HTTP/1.1
 content-type: application/json;
+
+{
+    "tag": "golang"
+}

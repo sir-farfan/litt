@@ -8,10 +8,13 @@ import (
 
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/controller"
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/router"
+	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/usecase"
 )
 
 func setupServer() *http.Server {
-	tagController := controller.NewTag()
+	tagUsecase := usecase.NewTag()
+	tagController := controller.NewTag(tagUsecase)
+
 	r := router.Setup(*tagController)
 	srv := &http.Server{
 		Handler: r,
