@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	// needed for the golang generic sql driver
 	_ "github.com/go-sql-driver/mysql"
 )
 
