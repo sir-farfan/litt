@@ -21,6 +21,15 @@ docker-compose up
 
 It will start a local MySQL database and create the tables as defined in ./db/database.sql
 
+### Building and publishing the service
+
+Request access to this private repository to see the CI/CD pipelines  
+https://github.com/sir-farfan/litt/actions
+
+### Project dashboard:
+
+https://github.com/sir-farfan/litt/projects/1
+
 #### Restarting the DB
 
 The DB running in Docker will keep all your records across restarts, if you want
@@ -29,3 +38,10 @@ to delete everything for whatever reason, just run
 ```bash
 docker compose rm
 ```
+
+## Running with docker
+
+### Public repository
+
+Published and nightly build images can be found in Docker Hub at:
+https://hub.docker.com/repository/docker/sulfurf/litt
