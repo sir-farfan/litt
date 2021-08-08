@@ -5,7 +5,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 
+	"github.com/gorilla/mux"
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/model"
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/usecase"
 )
@@ -55,5 +57,18 @@ func (t *Tag) Search(w http.ResponseWriter, r *http.Request) {
 }
 
 func (t *Tag) Delete(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("deleting tag\n"))
+	pathParams := mux.Vars(r)
+
+	// This function only gets called if the tag_id is provided in the correct format 😎
+	tag := pathParams["tag_id"]
+	tagID, _ := strconv.Atoi(tag)
+	_, err := t.useCase.Delete(tagID)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusServiceUnavailable)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+	w.Write(nil)
 }

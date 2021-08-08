@@ -7,3 +7,15 @@ content-type: application/json;
 {
     "tag": "golang"
 }
+
+### Delete tag by ID
+DELETE  {{ServiceHost}}/tag/19 HTTP/1.1
+content-type: application/json;
+
+### Ignored Delete request 😎
+DELETE  {{ServiceHost}}/tag/aoeu HTTP/1.1
+content-type: application/json;
+
+### Negative values ignored too 😛
+DELETE  {{ServiceHost}}/tag/-3 HTTP/1.1
+content-type: application/json;

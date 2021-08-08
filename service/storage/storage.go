@@ -80,6 +80,21 @@ func (dbc *DBService) DeleteTag(tag string) (int, error) {
 	return int(affected), nil
 }
 
+func (dbc *DBService) DeleteTagByID(tag int) (int, error) {
+	query := "DELETE FROM " + TagTable + " WHERE id = (?)"
+
+	res, err := dbc.DB.Exec(query, tag)
+	if err != nil {
+		log.Printf("ERROR deleting tag: %v\n", err)
+		return 0, err
+	}
+
+	affected, _ := res.RowsAffected()
+	log.Printf("Number of rows affected: %d\n", affected)
+
+	return int(affected), nil
+}
+
 func (dbc *DBService) SearchTag(tag string) ([]model.Tag, error) {
 	var tags []model.Tag
 	query := "SELECT * FROM " + TagTable + " WHERE tag = (?)"

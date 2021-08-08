@@ -33,3 +33,12 @@ func (u *Tag) Create(tag *model.Tag) (*model.Tag, error) {
 
 	return tag, nil
 }
+
+func (u *Tag) Delete(tagID int) (int, error) {
+	affected, err := u.db.DeleteTagByID(tagID)
+	if err != nil {
+		return 0, fmt.Errorf("Couldn't delete tag %w", err)
+
+	}
+	return affected, nil
+}

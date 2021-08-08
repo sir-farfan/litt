@@ -105,6 +105,40 @@ func TestDeleteTag(t *testing.T) {
 	}
 }
 
+func TestDeleteTagByID(t *testing.T) {
+	db := getConnection()
+	defer db.Close()
+
+	service := New(db)
+	tagID, err := service.CreateTag(deleteTag)
+	assert.Equal(t, nil, err)
+
+	tests := []struct {
+		name  string
+		tag   int
+		count int
+		err   error
+	}{
+		{
+			name:  "existing tag",
+			tag:   tagID,
+			count: 1,
+		},
+		{ // these two steps have to be run one after the other to guarantee success
+			name:  "non existing",
+			tag:   tagID,
+			count: 0,
+		},
+	}
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			affected, err := service.DeleteTagByID(tc.tag)
+			assert.Equal(t, affected, tc.count)
+			assert.Equal(t, err, tc.err)
+		})
+	}
+}
+
 func TestSearchTag(t *testing.T) {
 	db := getConnection()
 	defer db.Close()
