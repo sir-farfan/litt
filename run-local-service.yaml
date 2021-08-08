@@ -1,0 +1,30 @@
+# stolen from: https://referbruv.com/blog/posts/setting-up-and-using-mysql-as-a-container-via-docker-compose
+# and from: https://stackoverflow.com/questions/43322033/create-database-on-docker-compose-startup
+
+version: '3'
+
+services: 
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password --init-file /data/application/init.sql
+        volumes:
+            - ./db/database.sql:/data/application/init.sql
+        restart: always
+        environment:
+            # figure how to reset this from the docker image xD
+            MYSQL_ROOT_PASSWORD: YOUR_PASSWORD_HERE
+            MYSQL_ROOT_USER: root
+            MYSQL_DATABASE: litt
+            # MYSQL_USER: dev
+            # MYSQL_PASSWORD: YOUR_PASSWORD_HERE
+        ports: 
+            - 3306:3306
+        links:
+            - "app:localhost"
+    app:
+        image: sulfurf/litt:nightly
+        command: /app/main
+        ports:
+            - 8000:8000
+networks:
+  default:

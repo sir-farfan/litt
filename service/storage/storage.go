@@ -39,7 +39,7 @@ func New(db *sql.DB) *DBService {
 // ConnectToDB should be moved to the startup config step at some point later
 // so I don't want to have it highly coupled to this package
 func ConnectToDB(p ConnectionParams) *sql.DB {
-	source := fmt.Sprintf("%s:%s@%s/%s", p.User, p.Pass, p.Server, p.DB)
+	source := fmt.Sprintf("%s:%s@tcp(%s)/%s", p.User, p.Pass, p.Server, p.DB)
 	db, err := sql.Open(p.Driver, source)
 
 	if err != nil {

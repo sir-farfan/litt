@@ -17,8 +17,8 @@ func getSQLConnection() *storage.DBService {
 		Driver: "mysql",
 		User:   "root",
 		Pass:   "YOUR_PASSWORD_HERE",
-		// Server: "localhost",
-		DB: "litt",
+		Server: "localhost",
+		DB:     "litt",
 	}
 
 	dbc := storage.ConnectToDB(params)

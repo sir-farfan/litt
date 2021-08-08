@@ -30,8 +30,8 @@ func getConnection() *sql.DB {
 		Driver: "mysql",
 		User:   "root",
 		Pass:   "YOUR_PASSWORD_HERE",
-		// Server: "localhost",
-		DB: "litt",
+		Server: "localhost",
+		DB:     "litt",
 	}
 
 	return ConnectToDB(params)
