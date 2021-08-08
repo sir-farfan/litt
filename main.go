@@ -1,7 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+
+	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/controller"
+	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/router"
+)
+
+func setupServer() *http.Server {
+	tagController := controller.NewTag()
+	r := router.Setup(*tagController)
+	srv := &http.Server{
+		Handler: r,
+		Addr:    "0.0.0.0:8000",
+		// Good practice: enforce timeouts for servers you create!
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	log.Fatal(srv.ListenAndServe())
+
+	return srv
+}
 
 func main() {
-	fmt.Println("hello pipeline")
+	fmt.Println("Server started... maybe")
+	setupServer()
 }
