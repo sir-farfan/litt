@@ -1,4 +1,4 @@
-@ServiceHost = http://127.0.0.1:8000
+@ServiceHost = http://localhost:8000
 
 ### Create new tag
 POST {{ServiceHost}}/tag HTTP/1.1
@@ -23,7 +23,7 @@ content-type: application/json;
 ### Search a tag by name 🔭
 # Wild cards are in the form of %pattern%
 # The URI code for % is %25
-GET  {{ServiceHost}}/tag?name=%25ea%25 HTTP/1.1
+GET  {{ServiceHost}}/tag?name=%25la%25 HTTP/1.1
 content-type: application/json;
 
 ### Search a tag by ID 🔭

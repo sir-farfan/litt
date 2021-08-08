@@ -8,6 +8,21 @@ The overall DB structure is this
 
 ![DB!](./db/teams.png)
 
+### Quick start running the service
+
+Install Docker and Docker compose (usually shipped together), then run in the terminal
+from the root of this project this command:
+
+```bash
+docker-compose -f run-local-service.yaml  up
+```
+
+It will download the latest build and connect to a local database with everything you need
+to get started.
+
+To see a few sample HTTP requests used during the development of this services, please
+read [REST API](REST_API/README.md)
+
 ### Local development
 
 In order to start the services needed you need to install Docker and Docker compose

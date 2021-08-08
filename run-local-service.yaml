@@ -15,16 +15,17 @@ services:
             MYSQL_ROOT_PASSWORD: YOUR_PASSWORD_HERE
             MYSQL_ROOT_USER: root
             MYSQL_DATABASE: litt
-            # MYSQL_USER: dev
-            # MYSQL_PASSWORD: YOUR_PASSWORD_HERE
+            MYSQL_USER: mysql
+            MYSQL_PASSWORD: YOUR_PASSWORD_HERE
         ports: 
             - 3306:3306
-        links:
-            - "app:localhost"
+        network_mode: "host"
     app:
         image: sulfurf/litt:nightly
         command: /app/main
+        restart: always
         ports:
             - 8000:8000
+        network_mode: "host"
 networks:
   default:
