@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -35,8 +34,20 @@ func (t *Tag) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tagWithID, _ := t.useCase.Create(&tag)
-	fmt.Println(tagWithID)
+	tagWithID, err := t.useCase.Create(&tag)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusConflict)
+		return
+	}
+
+	m, err := json.Marshal(tagWithID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	w.Write(m)
 }
 
 func (t *Tag) Search(w http.ResponseWriter, r *http.Request) {

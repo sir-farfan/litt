@@ -8,11 +8,26 @@ import (
 
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/controller"
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/router"
+	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/service/storage"
 	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/usecase"
 )
 
+func getSQLConnection() *storage.DBService {
+	params := storage.ConnectionParams{
+		Driver: "mysql",
+		User:   "root",
+		Pass:   "YOUR_PASSWORD_HERE",
+		// Server: "localhost",
+		DB: "litt",
+	}
+
+	dbc := storage.ConnectToDB(params)
+	return storage.New(dbc)
+}
+
 func setupServer() *http.Server {
-	tagUsecase := usecase.NewTag()
+	db := getSQLConnection()
+	tagUsecase := usecase.NewTag(db)
 	tagController := controller.NewTag(tagUsecase)
 
 	r := router.Setup(*tagController)

@@ -1,13 +1,35 @@
 package usecase
 
-import "gitlab.com/codelittinc/golang-interview-project-ismael-estrada/model"
+import (
+	"errors"
+	"fmt"
 
-type Tag struct{}
+	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/model"
+	"gitlab.com/codelittinc/golang-interview-project-ismael-estrada/service/storage"
+)
 
-func NewTag() *Tag {
-	return &Tag{}
+type Tag struct {
+	db *storage.DBService
+}
+
+func NewTag(db *storage.DBService) *Tag {
+	return &Tag{db: db}
 }
 
 func (u *Tag) Create(tag *model.Tag) (*model.Tag, error) {
-	return &model.Tag{Tag: "yepee"}, nil
+	if len(tag.Tag) == 0 {
+		return nil, errors.New("Tag cannot be empty")
+	}
+	if len(tag.Tag) > 40 {
+		return nil, errors.New("Maximum tag length is 40 characters")
+	}
+
+	tagID, err := u.db.CreateTag(tag.Tag)
+	if err != nil {
+		return nil, fmt.Errorf("Couldn't insert the tag in the Database: %w", err)
+	}
+
+	tag.ID = tagID
+
+	return tag, nil
 }
