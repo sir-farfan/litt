@@ -36,6 +36,12 @@ docker-compose up
 
 It will start a local MySQL database and create the tables as defined in ./db/database.sql
 
+To facilitate running during the development process, you can use the `air` command, it
+will monitor changes in the source code and build and run for you the service, you can
+start testing very easily with it.
+
+https://github.com/cosmtrek/air
+
 ### Building and publishing the service
 
 Request access to this private repository to see the CI/CD pipelines  

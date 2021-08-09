@@ -72,7 +72,9 @@ jobs:
           tags: |
             sulfurf/litt:${{ github.sha }}
             sulfurf/litt:nightly
+            sulfurf/litt:latest
           labels: |
             sulfurf/litt:${{ github.sha }}
             sulfurf/litt:nightly
+            sulfurf/litt:latest
 
