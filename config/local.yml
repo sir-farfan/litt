@@ -1,0 +1,6 @@
+db:
+  user: mysql
+  pass: YOUR_PASSWORD_HERE
+  server: localhost
+  db: litt
+  driver: mysql

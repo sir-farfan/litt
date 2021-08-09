@@ -4,5 +4,6 @@
 
 go get -u github.com/go-sql-driver/mysql
 go get -u go get -u github.com/gorilla/mux
+go get -u github.com/go-playground/validator/v10
 
 

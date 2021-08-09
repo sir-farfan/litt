@@ -18,11 +18,11 @@ type DBService struct {
 }
 
 type ConnectionParams struct {
-	Driver string
-	User   string
-	Pass   string
-	Server string
-	DB     string
+	Driver string `mapstructure:"driver" validate:"required"`
+	User   string `mapstructure:"user" validate:"required"`
+	Pass   string `mapstructure:"pass" validate:"required"`
+	Server string `mapstructure:"server" validate:"required"`
+	DB     string `mapstructure:"db" validate:"required"`
 }
 
 const (
