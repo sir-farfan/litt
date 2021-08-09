@@ -14,8 +14,11 @@ Install Docker and Docker compose (usually shipped together), then run in the te
 from the root of this project this command:
 
 ```bash
+docker-compose -f run-local-service.yaml  pull
 docker-compose -f run-local-service.yaml  up
 ```
+
+It's important to execute the pull command so that it checks in case the image changed, otherwise it will always use the local copy.
 
 It will download the latest build and connect to a local database with everything you need
 to get started.
